@@ -25,7 +25,7 @@ ARG BUILD_ENVIRONMENT=requirements
 ARG APP_HOME=/app
 
 # Image metadata
-LABEL maintainer="egbosikelechi@gmail.com"
+LABEL maintainer="tankoraphael@gmail.com"
 LABEL description="Development Image for Media Index" 
 
 # prevents python .pyc files to written to docker
