@@ -9,8 +9,8 @@ The media_index project is a backend service for collecting and analyzing lingui
 
 ### Technology Stack
 - Python
-- Django
-- Redis (for background tasks)
+- Django, Django-Ninja and Pydantic
+- Redis and Django-rq (for background tasks)
 - Docker (for containerization)
 
 ## Quick Start
@@ -30,7 +30,8 @@ python -m pytest
 ```
 media_index/
 ├── TMDB/                   # TMDB integration
-├── language_analysis/      # Linguistic processing
+|-- language_analysis/      # Linguistic processing
+|-- subtitles/
 └── tests/                  # Test suite
 ```
 
