@@ -31,7 +31,7 @@ python -m pytest
 media_index/
 ├── TMDB/                   # TMDB integration
 |-- language_analysis/      # Linguistic processing
-|-- subtitles/
+|-- subtitles/              # Media TMDB subtitles
 └── tests/                  # Test suite
 ```
 
