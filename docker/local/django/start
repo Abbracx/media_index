@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# if any commands on my codes fails for any reason, the entire shell script fails
+set -o errexit
+
+# fail exit if any of the pipe commands fails  
+set -o pipefail
+
+# exist if any of the variables is not set
+set -o nounset
+
+# Update pip to the latest version
+echo "Updating pip..."
+python3 -m pip install --upgrade pip
+
+python3 manage.py migrate --no-input
+python3 manage.py collectstatic --no-input
+python3 manage.py runserver 0.0.0.0:8000
+
+DJANGO_SUPERUSER_PASSWORD=$SUPER_USER_PASSWORD python manage.py createsuperuser --username $SUPER_USER_NAME --email $SUPER_USER_EMAIL --noinput || {
+   echo "Superuser already exists. Skipping creation."
+}

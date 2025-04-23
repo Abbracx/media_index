@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - media-web
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
+    container_name: web
+    command: /start
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app:app
+    depends_on:
+      - redis
+    networks:
+      - media-web
+
+  postgres:
+    image: postgres:15-bullseye
+    ports:
+      - "5437:5437"
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    networks:
+      - media-web
+
+
+  rq_worker:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
+   
+    command: python3 manage.py rqworker tmdb_sync subtitles
+    volumes:
+      - .:/app:app
+    env_file:
+      - .env
+    depends_on:
+      - web
+      - redis
+    networks:
+      - media-web
+
+
+
+networks:
+    media-web:
+        driver: bridge
+
+volumes:
+  static_volume:
+  media_volume:
+  local_postgres_data: {}
