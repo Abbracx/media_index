@@ -1,6 +1,17 @@
 # Media Index Backend
+The media_index project is a backend service for collecting and analyzing linguistic data from various media sources, with an initial focus on TMDB movies and OpenSubtitles integration. The project is in early development and aims to expand its capabilities to include more media types and enhance linguistic analysis.
 
-Backend service for collecting and analyzing linguistic data from various media sources (movies, books, songs). Initially focused on TMDB movies and OpenSubtitles integration.
+### Main Function Points
+- Integrates with TMDB (The Movie Database) to collect and process movie data
+- Plans to add integration with OpenSubtitles for subtitle data
+- Provides linguistic analysis of the collected data
+- Allows for running background jobs to sync and process media data
+
+### Technology Stack
+- Python
+- Django
+- Redis (for background tasks)
+- Docker (for containerization)
 
 ## Quick Start
 
