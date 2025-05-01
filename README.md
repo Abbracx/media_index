@@ -9,7 +9,7 @@ The media_index project is a backend service for collecting and analyzing lingui
 
 ### Technology Stack
 - Python
-- Django, Django-Ninja and Pydantic
+- Django-Ninja (Django + FastAPI) and Pydantic
 - Redis and Django-rq (for background tasks)
 - Docker (for containerization)
 
